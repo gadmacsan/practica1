@@ -117,6 +117,7 @@ void PonerTerrenoEnMatriz(const vector<unsigned char> &terreno, const state &st,
 
 	switch(sensores.sentido){
 		case norte:
+		matriz[st.fil][st.col] = terreno[0];
 		matriz[st.fil-1][st.col-1] = terreno[1];
 		matriz[st.fil-1][st.col] = terreno[2];
 		matriz[st.fil-1][st.col+1] = terreno[3];
@@ -128,55 +129,51 @@ void PonerTerrenoEnMatriz(const vector<unsigned char> &terreno, const state &st,
 		matriz[st.fil-3][st.col-3] = terreno[9];
 		matriz[st.fil-3][st.col-2] = terreno[10];
 		matriz[st.fil-3][st.col-1] = terreno[11];
-		matriz[st.fil-2][st.col] = terreno[12];
+		matriz[st.fil-3][st.col] = terreno[12];
 		matriz[st.fil-3][st.col+1] = terreno[13];
 		matriz[st.fil-3][st.col+2] = terreno[14];
 		matriz[st.fil-3][st.col+3] = terreno[15];
 		break;
-		case noreste:
-		break;
 		case este:
-		//revisar
-		matriz[st.fil+1][st.col-1] = terreno[1];
-		matriz[st.fil+1][st.col] = terreno[2];
+		matriz[st.fil][st.col] = terreno[0];
+		matriz[st.fil-1][st.col+1] = terreno[1];
+		matriz[st.fil][st.col+1] = terreno[2];
 		matriz[st.fil+1][st.col+1] = terreno[3];
-		matriz[st.fil+2][st.col-2] = terreno[4];
-		matriz[st.fil+2][st.col-1] = terreno[5];
-		matriz[st.fil+2][st.col] = terreno[6];
-		matriz[st.fil+2][st.col+1] = terreno[7];
+		matriz[st.fil-2][st.col+2] = terreno[4];
+		matriz[st.fil-1][st.col+2] = terreno[5];
+		matriz[st.fil][st.col+2] = terreno[6];
+		matriz[st.fil+1][st.col+2] = terreno[7];
 		matriz[st.fil+2][st.col-2] = terreno[8];
-		matriz[st.fil+3][st.col-3] = terreno[9];
-		matriz[st.fil+3][st.col-3] = terreno[10];
-		matriz[st.fil+3][st.col-3] = terreno[11];
-		matriz[st.fil+3][st.col-3] = terreno[12];
-		matriz[st.fil+3][st.col-3] = terreno[13];
-		matriz[st.fil+3][st.col-3] = terreno[14];
-		matriz[st.fil+3][st.col-3] = terreno[15];
-		break;
-		case sureste:
+		matriz[st.fil-3][st.col+3] = terreno[9];
+		matriz[st.fil-2][st.col+3] = terreno[10];
+		matriz[st.fil-1][st.col+3] = terreno[11];
+		matriz[st.fil][st.col+3] = terreno[12];
+		matriz[st.fil+1][st.col+3] = terreno[13];
+		matriz[st.fil+2][st.col+3] = terreno[14];
+		matriz[st.fil+3][st.col+3] = terreno[15];
 		break;
 		case sur:
+		matriz[st.fil][st.col] = terreno[0];
 		matriz[st.fil+1][st.col+1] = terreno[1];
-		matriz[st.fil][st.col+1] = terreno[2];
-		matriz[st.fil-1][st.col+1] = terreno[3];
+		matriz[st.fil]+1[st.col] = terreno[2];
+		matriz[st.fil+1][st.col-1] = terreno[3];
 		matriz[st.fil+2][st.col+2] = terreno[4];
-		matriz[st.fil+1][st.col+2] = terreno[5];
-		matriz[st.fil][st.col+2] = terreno[6];
-		matriz[st.fil-1][st.col+2] = terreno[7];
-		matriz[st.fil-2][st.col+2] = terreno[8];
+		matriz[st.fil+2][st.col+1] = terreno[5];
+		matriz[st.fil+2][st.col] = terreno[6];
+		matriz[st.fil+2][st.col-1] = terreno[7];
+		matriz[st.fil+2][st.col-2] = terreno[8];
 		matriz[st.fil+3][st.col+3] = terreno[9];
-		matriz[st.fil+2][st.col+3] = terreno[10];
-		matriz[st.fil+1][st.col+3] = terreno[11];
-		matriz[st.fil][st.col+2] = terreno[12];
-		matriz[st.fil-1][st.col+3] = terreno[13];
-		matriz[st.fil-2][st.col+3] = terreno[14];
-		matriz[st.fil-3][st.col+3] = terreno[15];
-		break;
-		case suroeste:
+		matriz[st.fil+3][st.col+2] = terreno[10];
+		matriz[st.fil+3][st.col+1] = terreno[11];
+		matriz[st.fil+3][st.col] = terreno[12];
+		matriz[st.fil+3][st.col-1] = terreno[13];
+		matriz[st.fil+3][st.col-2] = terreno[14];
+		matriz[st.fil+3][st.col-3] = terreno[15];
 		break;
 		case oeste:
 		//revisar 
-	    matriz[st.fil][st.col-1] = terreno[1];
+		matriz[st.fil][st.col] = terreno[0];
+	    matriz[st.fil+1][st.col-1] = terreno[1];
 		matriz[st.fil][st.col-1] = terreno[2];
 		matriz[st.fil-1][st.col-1] = terreno[3];
 		matriz[st.fil+2][st.col-2] = terreno[4];
@@ -191,8 +188,6 @@ void PonerTerrenoEnMatriz(const vector<unsigned char> &terreno, const state &st,
 		matriz[st.fil-1][st.col-3] = terreno[13];
 		matriz[st.fil-2][st.col-3] = terreno[14];
 		matriz[st.fil-3][st.col-3] = terreno[15];
-		break;
-		case noroeste:
 		break;
 
 	}
