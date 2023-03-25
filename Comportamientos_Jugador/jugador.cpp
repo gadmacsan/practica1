@@ -155,7 +155,7 @@ void PonerTerrenoEnMatriz(const vector<unsigned char> &terreno, const state &st,
 		case sur:
 		matriz[st.fil][st.col] = terreno[0];
 		matriz[st.fil+1][st.col+1] = terreno[1];
-		matriz[st.fil]+1[st.col] = terreno[2];
+		matriz[st.fil+1][st.col] = terreno[2];
 		matriz[st.fil+1][st.col-1] = terreno[3];
 		matriz[st.fil+2][st.col+2] = terreno[4];
 		matriz[st.fil+2][st.col+1] = terreno[5];
