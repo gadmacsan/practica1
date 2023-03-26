@@ -10,7 +10,9 @@ struct state {
 };
 void PonerTerrenoEnMatriz(const vector<unsigned char> &terreno, const state &st,
               vector< vector<unsigned char>> &matriz, Sensores sensores);
+void TipoCasillaDondeCae(Sensores sensores, Action accion, const vector<unsigned char> &terreno, const vector<unsigned char> &superficie,bool &bikini, bool &zapatillas);
 
+Action giro(Action accion);
 
 class ComportamientoJugador : public Comportamiento{
 
@@ -31,6 +33,8 @@ class ComportamientoJugador : public Comportamiento{
 
     Action think(Sensores sensores);
     int interact(Action accion, int valor);
+    Action giro(Action accion);
+    void TipoCasillaDondeCae(Sensores sensores, Action accion, const vector<unsigned char> &terreno, const vector<unsigned char> &superficie,bool &bikini, bool &zapatillas);
 
   private:
   
@@ -38,7 +42,7 @@ class ComportamientoJugador : public Comportamiento{
   state current_state;
   Action last_action;
   
-  bool girar_derecha, bien_situado;
+  bool girar_derecha, bien_situado, bikini, zapatillas;
 };
 
 #endif

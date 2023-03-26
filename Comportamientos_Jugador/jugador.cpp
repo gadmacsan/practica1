@@ -88,6 +88,12 @@ Action ComportamientoJugador::think(Sensores sensores){
 		current_state.brujula = sensores.sentido;
 		bien_situado = true;
 	}
+	if(sensores.terreno[0]=='K'){
+		bikini=true;
+	}
+	if(sensores.terreno[0]=='D'){
+		zapatillas=true;
+	}
 	if (bien_situado){
 		//mapaResultado[current_state.fil][current_state.col] = sensores.terreno[0];
 		PonerTerrenoEnMatriz(sensores.terreno, current_state, mapaResultado, sensores);
@@ -105,7 +111,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 		girar_derecha = (rand()%2==0);
 	}
 	
-
+    TipoCasillaDondeCae(sensores, accion, sensores.terreno, sensores.superficie, bikini, zapatillas);
 
    //Recordar la ultima accion
 	last_action = accion;
@@ -268,3 +274,67 @@ void PonerTerrenoEnMatriz(const vector<unsigned char> &terreno, const state &st,
 int ComportamientoJugador::interact(Action accion, int valor){
   return false;
 }
+Action ComportamientoJugador:: giro(Action accion){
+	if(!girar_derecha){
+		accion = actTURN_SL;
+		girar_derecha = (rand()%2==0);
+	}else{
+		accion = actTURN_SR;
+		girar_derecha = (rand()%2==0);
+	}
+	return accion;
+}
+void ComportamientoJugador::TipoCasillaDondeCae(Sensores sensores, Action accion, const vector<unsigned char> &terreno, const vector<unsigned char> &superficie, bool &bikini, bool &zapatillas){
+	if((superficie[2]=='_')){ //Si la casilla está desocupada
+		switch(terreno[2]){
+			case 'A': //Agua
+			if(bikini){
+				accion = actFORWARD;
+			}else{
+				if(terreno[0]!= 'A'){
+					accion = giro(accion);
+				}else{
+					accion = actFORWARD;
+				}
+			}
+			break;
+			case 'P': //Precipio
+			accion = giro(accion);
+			break;
+			case 'S': //Suelo
+			accion = actFORWARD;
+			break;
+			case 'T': //Arena
+			accion = actFORWARD;
+			break;
+			case 'M': // Muro
+			accion = giro(accion);
+			break;
+			case 'G': //Posicionamiento
+			accion = actFORWARD;
+			break;
+			case 'B': //Bosque
+			if(zapatillas){
+				accion = actFORWARD;
+			}else if( terreno[6] != 'A' && terreno[6] != 'P' && terreno[6] != 'M'){
+				accion = actFORWARD;
+			}else{
+				accion = actFORWARD;
+			}
+			break;
+			case 'K': // Bikini
+			accion = actFORWARD;
+			break;
+			case 'D': //Zapatillas
+			accion = actFORWARD;
+			break;
+			case 'X': //Recarga
+			accion = actFORWARD;
+			break;
+
+		}
+	}else{
+		accion= giro(accion);
+	}
+}
+
