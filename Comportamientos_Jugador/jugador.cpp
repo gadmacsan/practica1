@@ -94,6 +94,10 @@ Action ComportamientoJugador::think(Sensores sensores){
 	if(sensores.terreno[0]=='D'){
 		zapatillas=true;
 	}
+	if(sensores.reset){
+		bikini = false;
+		zapatillas = false;
+	}
 	if (bien_situado){
 		//mapaResultado[current_state.fil][current_state.col] = sensores.terreno[0];
 		PonerTerrenoEnMatriz(sensores.terreno, current_state, mapaResultado, sensores);
@@ -337,4 +341,109 @@ void ComportamientoJugador::TipoCasillaDondeCae(Sensores sensores, Action accion
 		accion= giro(accion);
 	}
 }
+void consumoDeBateria(Sensores sensores, Action accion,const vector<unsigned char> &terreno, bool &bikini, bool &zapatillas){
+   //Funcion para tener en cuenta la cantidad de bateria que resta cada casilla
+   switch(accion){
+	   case actFORWARD:
+	   if(terreno[2]== 'A' ){
+		   if(bikini){
+			   sensores.bateria = sensores.bateria -10;
+		   }else{
+		       sensores.bateria = sensores.bateria - 200;
+		   }
+		   
+	   }else if(terreno[2]== 'B'){
+		   if(zapatillas){
+			   sensores.bateria = sensores.bateria -15;
+		   }else{
+			   sensores.bateria = sensores.bateria -100;
+		   }
+	   }else if(terreno[2]=='T'){
+		   sensores.bateria = sensores.bateria -2;
+	   }else{
+		   sensores.bateria = sensores.bateria -1;
+	   }
+	   break;
+	   case actTURN_SL:
+	   if(terreno[2]== 'A' ){
+		   if(bikini){
+			   sensores.bateria = sensores.bateria -5;
+		   }else{
+			   sensores.bateria = sensores.bateria -500;
+		   }
+	   }else if(terreno[2]== 'B'){
+		   if(zapatillas){
+			   sensores.bateria = sensores.bateria -1;
+		   }else{
+			   sensores.bateria = sensores.bateria -3;
+		   }
+	   }else if(terreno[2]=='T'){
+		   sensores.bateria = sensores.bateria -2;
+	   }else{
+		   sensores.bateria = sensores.bateria -1;
+	   }
+	   break;
+	   case actTURN_SR:
+	   if(terreno[2]== 'A' ){
+		   if(bikini){
+			   sensores.bateria = sensores.bateria -5;
+		   }else{
+			   sensores.bateria = sensores.bateria -500;
+		   }
+	   }else if(terreno[2]== 'B'){
+		   if(zapatillas){
+			   sensores.bateria = sensores.bateria -1;
+		   }else{
+			   sensores.bateria = sensores.bateria -3;
+		   }
+	   }else if(terreno[2]=='T'){
+		   sensores.bateria = sensores.bateria -2;
+	   }else{
+		   sensores.bateria = sensores.bateria -1;
+	   }
+	   break;
+	   case actTURN_BL:
+	   if(terreno[2]== 'A' ){
+		   if(bikini){
+			   sensores.bateria = sensores.bateria -5;
+		   }else{
+			   sensores.bateria = sensores.bateria -50;
+		   }
+	   }else if(terreno[2]== 'B'){
+		   if(zapatillas){
+			   sensores.bateria = sensores.bateria -1;
+		   }else{
+			   sensores.bateria = sensores.bateria -3;
+		   }
+	   }else if(terreno[2]=='T'){
+		   sensores.bateria = sensores.bateria -2;
+	   }else{
+		   sensores.bateria = sensores.bateria -1;
+	   }
+	   break;
+	   case actTURN_BR:
+	   if(terreno[2]== 'A' ){
+		   if(bikini){
+			   sensores.bateria = sensores.bateria -5;
+		   }else{
+			   sensores.bateria = sensores.bateria -50;
+		   }
+	   }else if(terreno[2]== 'B'){
+		   if(zapatillas){
+			   sensores.bateria = sensores.bateria -1;
+		   }else{
+			   sensores.bateria = sensores.bateria -3;
+		   }
+	   }else if(terreno[2]=='T'){
+           sensores.bateria = sensores.bateria -2;
+	   }else{
+		   sensores.bateria = sensores.bateria -1;
+	   }
+	   break;
+
+   }
+}
+
+//Crear funcion para el posicionamiento en caso de que los sensores de sentido no funcionen!! Punto 3 del guion.
+
 

@@ -13,6 +13,7 @@ void PonerTerrenoEnMatriz(const vector<unsigned char> &terreno, const state &st,
 void TipoCasillaDondeCae(Sensores sensores, Action accion, const vector<unsigned char> &terreno, const vector<unsigned char> &superficie,bool &bikini, bool &zapatillas);
 
 Action giro(Action accion);
+void consumoDeBateria(Sensores sensores, Action accion,const vector<unsigned char> &terreno, bool &bikini, bool &zapatillas);
 
 class ComportamientoJugador : public Comportamiento{
 
