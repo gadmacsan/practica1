@@ -14,6 +14,12 @@ void TipoCasillaDondeCae(Sensores sensores, Action accion, const vector<unsigned
 
 Action giro(Action accion);
 void consumoDeBateria(Sensores sensores, Action accion,const vector<unsigned char> &terreno, bool &bikini, bool &zapatillas);
+unsigned char funcionRecuerdaMapaDerechaOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores);
+unsigned char funcionRecuerdaMapaIzquierdaOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores);
+unsigned char funcionRecuerdaMapaDerechaNOOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores);
+unsigned char funcionRecuerdaMapaIzquierdaNOOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores);
+
+
 
 class ComportamientoJugador : public Comportamiento{
 
@@ -36,6 +42,11 @@ class ComportamientoJugador : public Comportamiento{
     int interact(Action accion, int valor);
     Action giro(Action accion);
     void TipoCasillaDondeCae(Sensores sensores, Action accion, const vector<unsigned char> &terreno, const vector<unsigned char> &superficie,bool &bikini, bool &zapatillas);
+    unsigned char funcionRecuerdaMapaDerechaOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores);
+    unsigned char funcionRecuerdaMapaIzquierdaOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores);
+    unsigned char funcionRecuerdaMapaDerechaNOOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores);
+    unsigned char funcionRecuerdaMapaIzquierdaNOOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores);
+
 
   private:
   

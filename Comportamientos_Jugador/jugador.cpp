@@ -443,7 +443,82 @@ void consumoDeBateria(Sensores sensores, Action accion,const vector<unsigned cha
 
    }
 }
-
+//TODO
 //Crear funcion para el posicionamiento en caso de que los sensores de sentido no funcionen!! Punto 3 del guion.
 
+//Funciones para el movimiento
 
+unsigned char ComportamientoJugador:: funcionRecuerdaMapaDerechaOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores){
+	unsigned char casilla;
+	switch(sensores.sentido){
+		case norte:
+		casilla = mapaResultado[sensores.posF][sensores.posC+1];
+		break;
+		case sur:
+		casilla = mapaResultado[sensores.posF+1][sensores.posC];
+		break;
+		case este:
+		casilla = mapaResultado[sensores.posF][sensores.posC-1];
+		break;
+		case oeste:
+		casilla = mapaResultado[sensores.posF-1][sensores.posC];
+		break;
+	}
+	return casilla;
+}
+
+unsigned char ComportamientoJugador:: funcionRecuerdaMapaIzquierdaOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores){
+	unsigned char casilla;
+	switch(sensores.sentido){
+		case norte:
+		casilla = mapaResultado[sensores.posF][sensores.posC-1];
+		break;
+		case sur:
+		casilla = mapaResultado[sensores.posF-1][sensores.posC];
+		break;
+		case este:
+		casilla = mapaResultado[sensores.posF][sensores.posC+1];
+		break;
+		case oeste:
+		casilla = mapaResultado[sensores.posF+1][sensores.posC];
+		break;
+	}
+	return casilla;
+}
+
+unsigned char ComportamientoJugador:: funcionRecuerdaMapaDerechaNOOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores){
+	unsigned char casilla;
+	switch(sensores.sentido){
+		case norte:
+		casilla = mapaResultado[sensores.posF][sensores.posC+1];
+		break;
+		case sur:
+		casilla = mapaResultado[sensores.posF+1][sensores.posC];
+		break;
+		case este:
+		casilla = mapaResultado[sensores.posF][sensores.posC-1];
+		break;
+		case oeste:
+		casilla = mapaResultado[sensores.posF-1][sensores.posC];
+		break;
+	}
+	return casilla;
+}
+unsigned char ComportamientoJugador:: funcionRecuerdaMapaIzquierdaNOOk(const vector<vector<unsigned char>> &mapaResultado, Sensores sensores){
+	unsigned char casilla;
+	switch(sensores.sentido){
+		case norte:
+		casilla = mapaResultado[sensores.posF][sensores.posC-1];
+		break;
+		case sur:
+		casilla = mapaResultado[sensores.posF-1][sensores.posC];
+		break;
+		case este:
+		casilla = mapaResultado[sensores.posF][sensores.posC+1];
+		break;
+		case oeste:
+		casilla = mapaResultado[sensores.posF+1][sensores.posC];
+		break;
+	}
+	return casilla;
+}
