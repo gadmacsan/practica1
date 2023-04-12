@@ -101,10 +101,13 @@ Action ComportamientoJugador::think(Sensores sensores){
 	if (bien_situado){
 		//mapaResultado[current_state.fil][current_state.col] = sensores.terreno[0];
 		PonerTerrenoEnMatriz(sensores.terreno, current_state, mapaResultado, sensores);
+		consumoDeBateria(sensores,accion,sensores.terreno, bikini, zapatillas);
+		TipoCasillaDondeCae(sensores, accion, sensores.terreno, sensores.superficie, bikini, zapatillas);
+
 	}
 	//Decidir la nueva accion
 	if (  (  sensores.terreno[2] == 'T' or sensores.terreno[2] == 'S' or 
-	        sensores.terreno[2]== 'G') and sensores.superficie[2] == '_'){
+	        sensores.terreno[2]== 'G' or sensores.terreno[2]== 'B' or sensores.terreno[2]== 'A') and sensores.superficie[2] == '_'){
 				accion = actFORWARD;
 			
 	}else if (!girar_derecha){
@@ -115,7 +118,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 		girar_derecha = (rand()%2==0);
 	}
 	
-    TipoCasillaDondeCae(sensores, accion, sensores.terreno, sensores.superficie, bikini, zapatillas);
+	
 
    //Recordar la ultima accion
 	last_action = accion;
